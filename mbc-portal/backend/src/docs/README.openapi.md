@@ -1,0 +1,3 @@
+- Swagger UI at `/api/docs`
+- Add routes and schemas to `src/docs/swagger.yaml`
+- Example: `/auth/login`, `/auth/register`, etc.
