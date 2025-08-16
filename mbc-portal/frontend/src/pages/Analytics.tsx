@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
-import { Container, Grid2 as Grid, Paper, Stack, Typography } from '@mui/material';
+import { Container, Paper, Stack, Typography } from '@mui/material';
+import Grid from '@mui/material/Grid';
 import api from '../lib/axios';
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, PieChart, Pie, Cell } from 'recharts';
 
@@ -21,7 +22,7 @@ export default function Analytics() {
 			<Stack spacing={3}>
 				<Typography variant="h5" fontWeight={700}>Department Analytics</Typography>
 				<Grid container spacing={2}>
-					<Grid size={{ xs: 12, md: 6 }}>
+					<Grid item xs={12} md={6}>
 						<Paper sx={{ p: 2, height: 360 }}>
 							<Typography variant="subtitle1" gutterBottom>Program Distribution</Typography>
 							<ResponsiveContainer width="100%" height={300}>
@@ -34,7 +35,7 @@ export default function Analytics() {
 							</ResponsiveContainer>
 						</Paper>
 					</Grid>
-					<Grid size={{ xs: 12, md: 6 }}>
+					<Grid item xs={12} md={6}>
 						<Paper sx={{ p: 2, height: 360 }}>
 							<Typography variant="subtitle1" gutterBottom>Students per Branch</Typography>
 							<ResponsiveContainer width="100%" height={300}>
@@ -50,7 +51,7 @@ export default function Analytics() {
 					</Grid>
 				</Grid>
 				<Grid container spacing={2}>
-					<Grid size={{ xs: 12, md: 6 }}>
+					<Grid item xs={12} md={6}>
 						<Paper sx={{ p: 2, height: 360 }}>
 							<Typography variant="subtitle1" gutterBottom>Fee Status</Typography>
 							<ResponsiveContainer width="100%" height={300}>
@@ -64,7 +65,7 @@ export default function Analytics() {
 							</ResponsiveContainer>
 						</Paper>
 					</Grid>
-					<Grid size={{ xs: 12, md: 6 }}>
+					<Grid item xs={12} md={6}>
 						<Paper sx={{ p: 2, height: 360 }}>
 							<Typography variant="subtitle1" gutterBottom>Grades Distribution</Typography>
 							<ResponsiveContainer width="100%" height={300}>
