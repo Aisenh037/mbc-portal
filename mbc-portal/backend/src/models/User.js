@@ -6,9 +6,10 @@ export const USER_ROLES = ['developer', 'admin', 'professor', 'student'];
 const userSchema = new mongoose.Schema(
   {
     name: { type: String, required: true, trim: true },
+    userId: { type: String, required: true, unique: true, index: true },
     email: { type: String, required: true, unique: true, lowercase: true, index: true },
     password: { type: String, required: true, select: false },
-    role: { type: String, enum: USER_ROLES, default: 'student', index: true },
+    role: { type: String, enum: USER_ROLES, default: 'developer', index: true },
     isEmailVerified: { type: Boolean, default: false },
 
     otpCode: { type: String, select: false },
