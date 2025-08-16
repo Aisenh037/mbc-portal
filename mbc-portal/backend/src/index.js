@@ -22,6 +22,7 @@ import examRoutes from './routes/exam.routes.js';
 import assignmentRoutes from './routes/assignment.routes.js';
 import researchRoutes from './routes/research.routes.js';
 import analyticsRoutes from './routes/analytics.routes.js';
+import usersRoutes from './routes/users.routes.js';
 
 import { notFound, errorHandler } from './middleware/error.js';
 
@@ -65,6 +66,7 @@ app.use('/api/exams', examRoutes);
 app.use('/api/assignments', assignmentRoutes);
 app.use('/api/research', researchRoutes);
 app.use('/api/analytics', analyticsRoutes);
+app.use('/api/users', usersRoutes);
 
 app.get('/api/health', (req, res) => {
   res.json({ status: 'ok', service: 'backend', env: env.NODE_ENV });

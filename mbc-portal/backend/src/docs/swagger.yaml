@@ -53,3 +53,15 @@ paths:
       responses:
         '200':
           description: OK
+  /analytics/overview:
+    get:
+      summary: Department overview metrics
+      responses:
+        '200':
+          description: Overview payload
+  /users:
+    get:
+      summary: List users (admin/developer)
+      responses:
+        '200':
+          description: OK

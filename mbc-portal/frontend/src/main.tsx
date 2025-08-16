@@ -6,6 +6,7 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import App from './pages/App'
 import Login from './pages/Login'
 import Dashboard from './pages/Dashboard'
+import Analytics from './pages/Analytics'
 import { ThemeProvider, CssBaseline } from '@mui/material'
 import theme from './theme'
 
@@ -13,6 +14,7 @@ const router = createBrowserRouter([
 	{ path: '/', element: <App /> },
 	{ path: '/login', element: <Login /> },
 	{ path: '/dashboard', element: <Dashboard /> },
+	{ path: '/analytics', element: <Analytics /> },
 ])
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
