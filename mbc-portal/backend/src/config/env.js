@@ -27,13 +27,22 @@ const envSchema = z.object({
 	CORS_ORIGIN: z.string().default('*'),
 	RATE_LIMIT_WINDOW_MS: z.string().default('900000'),
 	RATE_LIMIT_MAX: z.string().default('200'),
-	UPLOAD_DIR: z.string().default('uploads'),
-	S3_ENABLE: z.string().default('false'),
-	S3_REGION: z.string().default(''),
-	S3_BUCKET: z.string().default(''),
-	S3_ACCESS_KEY_ID: z.string().default(''),
-	S3_SECRET_ACCESS_KEY: z.string().default(''),
-	PY_SERVICE_URL: z.string().default('http://localhost:8000')
+	PY_SERVICE_URL: z.string().default('http://localhost:8000'),
+
+    // --- Added for Cloudinary ---
+    CLOUDINARY_CLOUD_NAME: z.string().min(1, 'CLOUDINARY_CLOUD_NAME is required'),
+    CLOUDINARY_API_KEY: z.string().min(1, 'CLOUDINARY_API_KEY is required'),
+    CLOUDINARY_API_SECRET: z.string().min(1, 'CLOUDINARY_API_SECRET is required'),
+
+    // --- Added for Twilio (SMS) ---
+    TWILIO_ACCOUNT_SID: z.string().default(''),
+    TWILIO_AUTH_TOKEN: z.string().default(''),
+    TWILIO_PHONE_NUMBER: z.string().default(''),
+
+    // Added for the seeder
+    DEFAULT_ADMIN_USERID: z.string().min(1),
+    DEFAULT_ADMIN_EMAIL: z.string().email(),
+    DEFAULT_ADMIN_PASSWORD: z.string().min(6),
 });
 
 const parsed = envSchema.safeParse(process.env);

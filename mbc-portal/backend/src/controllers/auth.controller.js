@@ -17,7 +17,8 @@ import { env } from '../config/env.js';
  * Register user (using userId + password)
  */
 export const register = asyncHandler(async (req, res) => {
-  const { name, userId, email, password, role } = req.body;
+  // --- SECURITY FIX: 'role' is removed from this line ---
+  const { name, userId, email, password } = req.body;
 
   // Ensure userId and email are unique
   const existingUserId = await User.findOne({ userId });
@@ -34,7 +35,14 @@ export const register = asyncHandler(async (req, res) => {
       .json({ message: 'Email already in use' });
   }
 
-  const user = await User.create({ name, userId, email, password, role });
+  // --- SECURITY FIX: 'role' is hardcoded to 'student' ---
+  const user = await User.create({
+    name,
+    userId,
+    email,
+    password,
+    role: 'student'
+  });
 
   // OTP for email verification (if you still want it)
   if (email) {

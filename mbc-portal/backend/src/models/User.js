@@ -9,7 +9,8 @@ const userSchema = new mongoose.Schema(
     userId: { type: String, required: true, unique: true, index: true },
     email: { type: String, required: true, unique: true, lowercase: true, index: true },
     password: { type: String, required: true, select: false },
-    role: { type: String, enum: USER_ROLES, default: 'developer', index: true },
+    // SECURITY FIX: Change default role to 'student'
+    role: { type: String, enum: USER_ROLES, default: 'student', index: true },
     isEmailVerified: { type: Boolean, default: false },
 
     otpCode: { type: String, select: false },

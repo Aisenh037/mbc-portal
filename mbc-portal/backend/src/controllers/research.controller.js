@@ -1,7 +1,7 @@
 import { StatusCodes } from 'http-status-codes';
 import { asyncHandler } from '../utils/asyncHandler.js';
 import { ResearchProject, Publication } from '../models/Research.js';
-import { persistFile } from '../services/storage.service.js';
+// import { persistFile } from '../services/storage.service.js'; // No longer needed
 
 export const createProject = asyncHandler(async (req, res) => {
   const project = await ResearchProject.create(req.body);
@@ -24,7 +24,7 @@ export const deleteProject = asyncHandler(async (req, res) => {
 
 export const createPublication = asyncHandler(async (req, res) => {
   let fileUrl;
-  if (req.file) fileUrl = await persistFile(req.file);
+  if (req.file) fileUrl = req.file.path; // Get URL from Cloudinary
   const pub = await Publication.create({ ...req.body, fileUrl });
   res.status(StatusCodes.CREATED).json(pub);
 });

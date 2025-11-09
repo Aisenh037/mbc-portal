@@ -1,23 +1,20 @@
 import multer from 'multer';
-import path from 'path';
-import { fileURLToPath } from 'url';
-import { env } from '../config/env.js';
-
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
-
-const storage = multer.diskStorage({
-  destination: function (req, file, cb) {
-    cb(null, path.join(__dirname, '..', '..', env.UPLOAD_DIR));
-  },
-  filename: function (req, file, cb) {
-    const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1e9);
-    cb(null, uniqueSuffix + '-' + file.originalname);
-  }
-});
+import { storage } from '../config/cloudinary.js'; // Import Cloudinary storage
 
 function fileFilter(req, file, cb) {
-  cb(null, true);
+  // You can add more robust file type filtering here if needed
+  const allowedTypes = /jpeg|jpg|png|pdf|doc|docx/;
+  const mimetype = allowedTypes.test(file.mimetype);
+  const extname = allowedTypes.test(file.originalname.split('.').pop());
+
+  if (mimetype && extname) {
+    return cb(null, true);
+  }
+  cb(new Error('File type not allowed. Only images, PDFs, and docs are supported.'));
 }
 
-export const upload = multer({ storage, fileFilter, limits: { fileSize: 20 * 1024 * 1024 } });
+export const upload = multer({
+  storage: storage, // Use Cloudinary storage
+  fileFilter: fileFilter,
+  limits: { fileSize: 20 * 1024 * 1024 } // 20MB file limit
+});
